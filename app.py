@@ -28,8 +28,9 @@ def hello():
 
 #this function should return the names of all users in the array users.
 #Finish this code.
-@app.route('/api/getUsers', methods=['GET'])
-def user():
-    return
+# @app.route('/api/getUsers', methods=['GET'])
+# def user():
+#     return
+
 if __name__ == '__main__':
     app.run()
