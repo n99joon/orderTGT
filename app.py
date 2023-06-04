@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/api/hello', methods=['GET'])
 def hello():
     return jsonify(message='Hello, world!')
-    #return print("hello, world")
+    #return 'Hello World!'
 
 # # Temporary data store for user records
 # users = []
