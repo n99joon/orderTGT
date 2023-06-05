@@ -1,6 +1,8 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
+
+
 
 @app.route('/api/hello', methods=['GET'])
 def hello():
@@ -13,9 +15,17 @@ users = []
 @app.route('/api/users', methods=['GET', 'POST'])
 #415 error -> Need to add header for application/json
 def create_user():
+    header = {
+        'Content_type': 'application/json'
+    }
+    response = response.request('http://localhost:5000/api/users',
+                            headers = header,
+                            verify = False)
+    
+    
     data = request.get_json()
     if 'name' not in data or 'email' not in data:
-        return jsonify(message='Name and email are required.'), 400
+        return response.jsonify(message='Name and email are required.'), 400
 
     name = data['name']
     email = data['email']
@@ -24,7 +34,7 @@ def create_user():
     user = {'name': name, 'email': email}
     users.append(user)
 
-    return jsonify(message='User created successfully.', user=user), 201
+    return response.jsonify(message='User created successfully.', user=user), 201
 
 #this function should return the names of all users in the array users.
 #Finish this code.
