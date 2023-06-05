@@ -24,13 +24,14 @@ def create_user():
         users.append(user)
 
         return jsonify(message='User created successfully.', user=user), 201
-    
     elif request.method == 'GET':
-        return jsonify(users=users)
+        return jsonify(message='GET')
+    
+    
 
 @app.route('/api/getUsers', methods=['GET'])
 def get_users():
     return jsonify(users=users)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
