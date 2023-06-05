@@ -10,6 +10,7 @@ def hello():
 users = []
 
 @app.route('/api/users', methods=['GET', 'POST'])
+
 def create_user():
     if request.method == 'POST':
         data = request.get_json()
@@ -26,7 +27,6 @@ def create_user():
         return jsonify(message='User created successfully.', user=user), 201
     elif request.method == 'GET':
         return jsonify(message='GET')
-    
     
 
 @app.route('/api/getUsers', methods=['GET'])
