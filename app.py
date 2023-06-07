@@ -81,10 +81,8 @@ if __name__ == '__main__':      #Used to check if the name of the current module
 #curl --help is the command that will give you info on all the availabe options you have 
 #curl --data <data> url is basically the format that you use if you want to send data to our server
 #Initially got an error saying the name request is not defined so I will import it from the flask module
-#Now, I am going to download postman and try use that.
-#brew install newman
+
 
 
 #Question 5:
 #Managed to return a list of all the names created by using the get function
-#
