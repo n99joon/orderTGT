@@ -5,7 +5,6 @@ app = Flask(__name__)
 @app.route('/api/hello', methods=['GET'])
 def hello():
     return jsonify(message='Hello, world!')
-    #return 'Hello World!'
 
 # Temporary data store for user records
 users = []
@@ -26,11 +25,13 @@ def create_user():
 
     return jsonify(message='User created successfully.', user=user), 201
 
-#this function should return the names of all users in the array users.
-#Finish this code.
 @app.route('/api/getUsers', methods=['GET'])
-def user():
-    return
+def get_users():
+    if len(users) == 0:
+        return jsonify(message='No users found.')
+    
+    user_names = [user['name'] for user in users]
+    return jsonify(users=user_names)
 
 if __name__ == '__main__':
     app.run()
