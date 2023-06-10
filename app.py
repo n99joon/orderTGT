@@ -1,10 +1,10 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify #imports the Flask class (a web application framework for Python that allows developers to build web applications in a flexible and modular way through a range of tools and utilities for handling HTTP requests and responses, routing requests to the appropriate functions, and managing application state. ) and the jsonify function (that allows developers to easily convert Python objects to JSON format, which can be sent as a response to client requests) from the Flask module/library)
 
-app = Flask(__name__)
+app = Flask(__name__) #creates a new instance of the Flask class and assigns it to the variable "app".
 
-@app.route('/api/hello', methods=['GET'])
+@app.route('/api/hello', methods=['GET'])  #defines a route for the Flask application using the @app.route() decorator. The route is specified as "/api/hello" and the HTTP method used to access the route is defined as "GET".
 def hello():
-    return jsonify(message='Hello, world!')
+    return jsonify(message='Hello, world!')   #defines a function named "hello" that returns a JSON response using the jsonify function provided by the Flask web application framework.
     #return 'Hello World!'
 
 # # Temporary data store for user records
@@ -33,4 +33,4 @@ def hello():
 #     return
 
 if __name__ == '__main__':
-    app.run()
+    app.run()  #starts the Flask web application if the script is executed directly, rather than imported as a module.                    
