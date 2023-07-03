@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
 import os
-import psycopg2
+import pymysql
 
 app = Flask(__name__)
 
-# Establish a connection to the Heroku Postgres database
-db_url = os.environ.get('DATABASE_URL')
-db = psycopg2.connect(db_url)
+# Establish a connection to the local MySQL database
+db_url = "mysql+pymysql://username:password@localhost/database_name"  # Replace with your local database connection details
+db = pymysql.connect(host='localhost', user='username', password='password', database='database_name')
 
 # Create a cursor to interact with the database
 cursor = db.cursor()
@@ -14,7 +14,7 @@ cursor = db.cursor()
 # Create the users table if it doesn't exist
 create_table_query = '''
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     email VARCHAR(255)
 )
@@ -42,8 +42,7 @@ def create_user():
     db.commit()
 
     # Get the inserted user's ID
-    cursor.execute('SELECT lastval()')
-    user_id = cursor.fetchone()[0]
+    user_id = cursor.lastrowid
 
     # Create a new user record
     user = {'id': user_id, 'name': name, 'email': email}
