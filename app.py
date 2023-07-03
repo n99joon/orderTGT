@@ -42,6 +42,7 @@ def create_user():
     db.commit()
 
     # Get the inserted user's ID
+    cursor.execute('SELECT lastval()')
     user_id = cursor.fetchone()[0]
 
     # Create a new user record
@@ -66,5 +67,3 @@ def get_users():
 
 if __name__ == '__main__':
     app.run()
-
-
